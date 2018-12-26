@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     const data = {name: req.body.name, color: req.body.color};
-    res.locals.connection.query('INSERT INTO components(name, color) values($1, $2);', [data.name, data.color], (err, result) => {
+    res.locals.connection.query('INSERT INTO components(name, color) values($1, $2) RETURNING *;', [data.name, data.color], (err, result) => {
         if (err) {
             console.error(err);
             res.json(err);

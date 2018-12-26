@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const pg = require('pg');
-const connectionString = require('./pgcfg');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -15,8 +14,12 @@ var app = express();
 
 //Database connection
 app.use(function(req, res, next){
+    let connectionString = process.env.DATABASE_URL;
+    if(!connectionString) {
+        connectionString = require('./pgcfg');
+    }
     res.locals.connection = new pg.Client({
-        connectionString: process.env.DATABASE_URL || connectionString,
+        connectionString: connectionString,
         ssl: !!(process.env.DATABASE_URL),
     });
     res.locals.connection.connect();

@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const pg = require('pg');
-const connectionString = 'postgresql://rms:rmspass@localhost:5432/rms';
+const connectionString = require('./pgcfg');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

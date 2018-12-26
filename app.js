@@ -4,11 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const pg = require('pg');
-const connectionString = '';
+const connectionString = 'postgresql://rms:rmspass@localhost:5432/rms';
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var componentsRouter = require('./routes/components');
+var migrationRouter = require('./routes/migration');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/v1/components', componentsRouter);
+app.use('/api/v1/migration', migrationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

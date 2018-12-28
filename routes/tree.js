@@ -63,8 +63,8 @@ router.get('/', function(req, res, next) {
                 res.json({error: 'empty'});
             }
         }else{
-            console.log(errAdd.stack);
-            res.json(errAdd);
+            console.log(err.stack);
+            res.json(err);
         }
     });
 });

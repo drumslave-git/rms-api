@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var componentsRouter = require('./routes/components');
 var migrationRouter = require('./routes/migration');
+var treeRouter = require('./routes/tree');
 
 var app = express();
 
@@ -37,9 +38,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api/v1/components', componentsRouter);
 app.use('/api/v1/migration', migrationRouter);
+app.use('/api/v1/tree', treeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
